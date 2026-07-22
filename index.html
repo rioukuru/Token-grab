@@ -33,18 +33,15 @@ body{
 }
 
 .logo{
-    width:80px;
-    height:80px;
+    width:90px;
+    height:90px;
     margin:auto;
     margin-bottom:15px;
     border-radius:50%;
-    background:linear-gradient(135deg,#00c6ff,#0072ff);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:35px;
+    object-fit:cover;
     box-shadow:0 0 20px #00c6ff;
-    color:white;
+    background:white;
+    padding:5px;
 }
 
 h1{
@@ -117,9 +114,7 @@ button:active{
 
 <div class="card">
 
-<div class="logo">
-🔑
-</div>
+<img src="ic_launcher.png" alt="Logo" class="logo">
 
 <h1>Token Grab</h1>
 <p>by MixRoot</p>
@@ -183,6 +178,9 @@ function copyToken(){
     try {
         document.execCommand('copy');
         document.getElementById('status').innerText = "📋 Token berhasil disalin!";
+        setTimeout(() => {
+            document.getElementById('status').innerText = "✅ Token berhasil dimuat";
+        }, 2000)
     } catch (err) {
         alert("Gagal menyalin. Coba tahan lama di kotak token > Salin");
     }
