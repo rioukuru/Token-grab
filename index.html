@@ -78,7 +78,19 @@ h1{
 .subtitle{
     color:#666;
     font-size:16px;
-    margin-bottom:25px;
+    margin-bottom:15px;
+}
+
+/* Counter pengunjung */
+.visitor{
+    background: linear-gradient(90deg, #00a8ff, #0077ff);
+    color:white;
+    padding:10px;
+    border-radius:15px;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:20px;
+    box-shadow: 0 4px 15px rgba(0,119,255,0.3);
 }
 
 .label{
@@ -192,6 +204,9 @@ h1{
 <h1>Token Grab</h1>
 <p class="subtitle">by MixRoot</p>
 
+<!-- Counter Pengunjung -->
+<div class="visitor">👁️ Pengunjung Hari Ini: <span id="visitorCount">0</span></div>
+
 <p class="label">Token Aktif</p>
 <div id="token" class="token-box">Memuat token dari Firebase...</div>
 
@@ -202,7 +217,7 @@ h1{
 <div class="status" id="status"></div>
 
 <div class="warning-box">
-    <div class="warning-title">⚠️ JASA BYPASS SUSPEN GRAB 7 HARI !</div>
+    <div class="warning-title">⚠️ JASA BYPASS SUSPEN GRAB 7 HARI!</div>
     <div class="warning-text">
         Langsung aja konsultasi ke sini bro:<br><br>
         📱 Telegram:<br>
@@ -213,6 +228,9 @@ h1{
 <div class="footer">© MixRoot</div>
 
 </div>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="auto_gacor.mp3" loop></audio>
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -235,7 +253,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Ambil data token dari Firebase
+// 1. Ambil data token dari Firebase
 const tokenRef = db.ref('token');
 tokenRef.on('value', (snapshot) => {
   const data = snapshot.val();
@@ -246,11 +264,35 @@ tokenRef.on('value', (snapshot) => {
     document.getElementById('token').innerText = "Token belum diisi di Firebase";
     document.getElementById('status').innerText = "⚠️ Kosong";
   }
-}, (error) => {
-  document.getElementById('status').innerText = "❌ Gagal: " + error.message;
 });
 
-// Fungsi copy
+// 2. Counter Pengunjung Harian
+const today = new Date().toISOString().split('T')[0]; // format YYYY-MM-DD
+const visitorRef = db.ref('visitors/' + today);
+
+// Cek apakah user ini sudah pernah masuk hari ini
+if(!sessionStorage.getItem('visited_today')){
+    visitorRef.transaction((current) => {
+        return (current || 0) + 1;
+    });
+    sessionStorage.setItem('visited_today', 'true');
+}
+
+visitorRef.on('value', (snap) => {
+    document.getElementById('visitorCount').innerText = snap.val() || 0;
+});
+
+// 3. Background Music Autoplay
+window.addEventListener('load', () => {
+    const music = document.getElementById('bgMusic');
+    music.volume = 0.3; // kecilin volumenya
+    music.play().catch(() => {
+        // kalau browser blokir autoplay, play pas klik pertama
+        document.body.addEventListener('click', () => music.play(), {once: true});
+    });
+});
+
+// 4. Fungsi copy
 function copyToken(){
     const tokenText = document.getElementById("token").innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
