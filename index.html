@@ -14,11 +14,12 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#00c6ff,#0072ff);
+    padding:20px;
 }
 
 .card{
@@ -52,3 +53,77 @@ h1{
     font-size:26px;
     margin-bottom:5px;
 }
+
+p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    text-align:left;
+    color:#0072ff;
+    font-weight:bold;
+    margin:10px 0 5px 0;
+    font-size:14px;
+}
+
+#token{
+    width:100%;
+    height:160px;
+    border:2px solid #00c6ff;
+    outline:none;
+    resize:none;
+    border-radius:18px;
+    padding:15px;
+    font-size:12px;
+    background:rgba(255,255,255,1);
+    color:#333;
+    word-break: break-all;
+}
+
+button{
+    margin-top:15px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(90deg,#00c6ff,#0072ff);
+    box-shadow:0 0 20px rgba(0,114,255,.6);
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 0 35px rgba(0,198,255,.8);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.footer{
+    margin-top:18px;
+    color:#777;
+    font-size:13px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<div class="logo">
+🔑
+</div>
+
+<h1>Token Grab</h1>
+<p>by MixRoot</p>
+
+<label>Token Aktif</label>
+<textarea id="token" readonly>eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJuand0IjoiZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklsOWtaV1poZFd4MElpd2lkSGx3SWpvaVNsZFVJbjAuZXlKaGRXUWlPaUpRUVZOVFJVNUhSVklpTENKamJtWWlPaUpNVXpCMFRGTXhRMUpWWkVwVWFVSkVVbFpLVlZOVldrcFJNRVpWVWxNd2RFeFRNSFJEYXpGS1UxVktSR1ZyVGtOak1rWkNVa1ZHYmxKVlRrSmFNRlpEVkZWR2RsSXdUa1JqVldSVVZGUlJOVkZyUms1Uk1ERkNUMGhvUlZaRlJrMVJiV1JQVm10S1FsUldVa05TVm5CdldWUktWbVF3YUc5Wk1EVlBaV3RHTTFSV1VrSmxSVEZGVVZoalMxUlZVa0prTVdSdldUQTFUMUpIWkROVVZsSkNaVVV4UlZGWVpFNVNSVVl6VmpKd1FsVkZNVkpOU0dSRVpERnNSVlpzUmxKU1JWWXpWV3RrV2xZelVuTlVWVnB5WkRCV00xZFZhRXhpTVhCS1pXMXZkMUV3UmxKWFZXeE1ZakZ3U21WdGIzZFNRWEJDVlZkT1JWVlhaRUpTVkZwVVQxUmthRnBYT0hkaU0yUjRWRmRhTkU5R2NIZFNiVVpSVFRGQ1Fsa3pjRVZYVm14VFkwUkpOR0ZYZUVwU2JtUk1VMVZ6TlZSdVpGVlJiR2N4VkVSYVRFMHhXbTVUUlVwSlVqQm9VbHBGV25KTldFVjRWbGM1U2tOcVduWk9WRUpHWTBoR1RHRkdWbTFVTVd4TFdWaFZOR0ZyUmt4UmJXUnVZMWRvY21Gck9WRlZWa1pGVVZka1QxTnJSa1ZSYTJSQ1lWVldRbVZZVGxwbGEzTjVUVWRSZGxGdGRESmxSRnBxV2tkNE1sWXdhREJpV0ZKaFdYcEdVVlZ0Vm01UlZ6aExXakpTVEZkdE1WUkxNazR6VFVWR1JGTldSa1ZVUTNSQ1lqSk5NV1ZJVG14aVJFRjJVakZDUzJOV1FtMVNWMFZ5VFZaamVsUnRPVWhXYVhRMFRVaFdibEl3T0hoT1ZFWlZWakZXVUZGVU1EbERhVEIwVEZNd2RGSlZOVVZKUlU1R1ZXeFNTbEpyYkVSUlZsSkdURk13ZEV4VE1EMGlMQ0psYzJraU9pSkxRbWhxY3pKamFIRllSelJYYzI1dmQybFFha00zZWtjM1ozZGxaSHBYYjFSWVJFb3hVRWRvTkdoeFEzcFRaejBpTENKbGVIQWlPalE1TXpneU5UTTROVElzSW1saGRDSTZNVGM0TkRZMU16Zz
