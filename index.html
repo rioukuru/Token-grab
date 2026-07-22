@@ -126,35 +126,6 @@ h1{
     box-shadow: 0 5px 20px rgba(0,119,255,0.4);
 }
 
-/* Box Root Bypass */
-.bypass-box{
-    background: linear-gradient(135deg, #00a8ff, #0077ff);
-    color:white;
-    padding:15px;
-    border-radius:18px;
-    margin-bottom:20px;
-    box-shadow: 0 8px 25px rgba(0,119,255,0.4);
-}
-.bypass-title{
-    font-weight:800;
-    font-size:15px;
-    margin-bottom:10px;
-}
-.app-icons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:10px;
-}
-.app-icons img{
-    width:40px;
-    height:40px;
-    border-radius:12px;
-    background:white;
-    padding:5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
 .label{
     text-align:left;
     color:#0077ff;
@@ -239,6 +210,21 @@ h1{
     text-decoration:none;
 }
 
+/* Box Root Bypass di dalam warning */
+.bypass-inside{
+    background: linear-gradient(135deg, #00a8ff, #0077ff);
+    color:white;
+    padding:12px;
+    border-radius:15px;
+    margin:15px 0;
+    text-align:center;
+    box-shadow: 0 4px 15px rgba(0,119,255,0.3);
+}
+.bypass-inside-title{
+    font-weight:800;
+    font-size:14px;
+}
+
 .footer{
     color:#666;
     font-size:13px;
@@ -278,17 +264,6 @@ h1{
 <!-- Counter Pengunjung -->
 <div class="visitor">👁️ Pengunjung Hari Ini: <span id="visitorCount">0</span></div>
 
-<!-- Box Root Bypass -->
-<div class="bypass-box">
-    <div class="bypass-title">🚀 ROOT BYPASS VERMUK ALL APLIKASI OJOL</div>
-    <div>Tembus Semua!</div>
-    <div class="app-icons">
-        <img src="https://cdn.worldvectorlogo.com/logos/grab-1.svg" alt="Grab">
-        <img src="https://cdn.worldvectorlogo.com/logos/gojek-1.svg" alt="Gojek">
-        <img src="https://cdn.worldvectorlogo.com/logos/shopee-2.svg" alt="Shopee">
-    </div>
-</div>
-
 <p class="label">Token Aktif</p>
 <div id="token" class="token-box">Memuat token dari Firebase...</div>
 
@@ -300,6 +275,13 @@ h1{
 
 <div class="warning-box">
     <div class="warning-title">⚠️ JASA BYPASS SUSPEN GRAB 7 HARI!</div>
+
+    <!-- Box Root Bypass dipindah ke sini -->
+    <div class="bypass-inside">
+        <div class="bypass-inside-title">🚀 ROOT BYPASS VERMUK ALL APLIKASI OJOL</div>
+        <div>Tembus Semua!</div>
+    </div>
+
     <div class="warning-text">
         Langsung aja konsultasi ke sini bro:<br><br>
         📱 Telegram Admin:<br>
