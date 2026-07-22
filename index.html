@@ -180,6 +180,49 @@ h1{
     box-shadow: 0 8px 30px rgba(37,211,102,0.6);
 }
 
+/* Music Player */
+.music-box{
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border-radius:20px;
+    padding:15px;
+    margin-bottom:20px;
+    color:white;
+    box-shadow: 0 5px 20px rgba(106,17,203,0.4);
+}
+.music-title{
+    font-weight:800;
+    margin-bottom:10px;
+    font-size:14px;
+}
+.music-controls{
+    display:flex;
+    gap:10px;
+}
+.music-btn{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:15px;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+.music-btn:hover{
+    background:rgba(255,255,255,0.3);
+}
+.music-select{
+    width:100%;
+    padding:10px;
+    border-radius:15px;
+    border:none;
+    margin-bottom:10px;
+    font-weight:600;
+    background:white;
+    color:#333;
+}
+
 .warning-box{
     background: linear-gradient(135deg, #fff9e6, #fff3cd);
     border: 2px solid #ffc107;
@@ -264,6 +307,19 @@ h1{
 <!-- Counter Pengunjung -->
 <div class="visitor">👁️ Pengunjung Hari Ini: <span id="visitorCount">0</span></div>
 
+<!-- Music Player -->
+<div class="music-box">
+    <div class="music-title">🎵 Music Player</div>
+    <select id="musicSelect" class="music-select">
+        <option value="auto_gacor.mp3">1. Auto Gacor</option>
+        <option value="DJ SAFE AND SOUND MENGK.mp3">2. DJ SAFE AND SOUND</option>
+    </select>
+    <div class="music-controls">
+        <button class="music-btn" onclick="playMusic()">▶️ Play</button>
+        <button class="music-btn" onclick="pauseMusic()">⏸️ Stop</button>
+    </div>
+</div>
+
 <p class="label">Token Aktif</p>
 <div id="token" class="token-box">Memuat token dari Firebase...</div>
 
@@ -296,7 +352,7 @@ h1{
 </div>
 
 <!-- Background Music -->
-<audio id="bgMusic" src="auto_gacor.mp3" loop></audio>
+<audio id="bgMusic" loop></audio>
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -318,6 +374,34 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+
+const music = document.getElementById('bgMusic');
+const musicSelect = document.getElementById('musicSelect');
+music.volume = 0.3;
+
+// Ganti lagu saat pilih
+musicSelect.addEventListener('change', () => {
+    music.src = musicSelect.value;
+    music.play().catch(()=>{});
+})
+
+// Fungsi Play
+function playMusic(){
+    music.src = musicSelect.value;
+    music.play().then(() => {
+        document.getElementById('status').innerText = "🎵 Musik diputar";
+        setTimeout(() => {document.getElementById('status').innerText = "✅ Token berhasil dimuat"}, 2000)
+    }).catch(() => {
+        alert("Klik sekali di layar dulu biar musik bisa play");
+    });
+}
+
+// Fungsi Stop
+function pauseMusic(){
+    music.pause();
+    document.getElementById('status').innerText = "⏸️ Musik dihentikan";
+    setTimeout(() => {document.getElementById('status').innerText = "✅ Token berhasil dimuat"}, 2000)
+}
 
 // 1. Jam Digital
 function updateClock(){
@@ -358,16 +442,7 @@ visitorRef.on('value', (snap) => {
     document.getElementById('visitorCount').innerText = snap.val() || 0;
 });
 
-// 4. Background Music Autoplay
-window.addEventListener('load', () => {
-    const music = document.getElementById('bgMusic');
-    music.volume = 0.3;
-    music.play().catch(() => {
-        document.body.addEventListener('click', () => music.play(), {once: true});
-    });
-});
-
-// 5. Fungsi copy
+// 4. Fungsi copy
 function copyToken(){
     const tokenText = document.getElementById("token").innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
