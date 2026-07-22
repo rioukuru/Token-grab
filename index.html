@@ -1,88 +1,142 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin TOKEN GRAB</title>
-  <style>
-    body { font-family: Arial; padding: 20px; background: #f2f2f2; }
-    .card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    h1 { color: #FF5722; }
-    input, button, select { padding: 12px; margin: 5px 0; border-radius: 8px; border: 1px solid #ddd; width: 100%; box-sizing: border-box; }
-    button { background: #FF5722; color: white; cursor: pointer; font-weight: bold; border: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Grab by MixRoot</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1d2671,#c33764);
+}
+
+.card{
+    width:90%;
+    max-width:420px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(0,0,0,.4);
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    margin:auto;
+    margin-bottom:15px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00f2fe,#4facfe);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:35px;
+    box-shadow:0 0 20px #4facfe;
+}
+
+h1{
+    color:white;
+    font-size:26px;
+    margin-bottom:5px;
+}
+
+p{
+    color:#ddd;
+    margin-bottom:20px;
+}
+
+textarea{
+    width:100%;
+    height:140px;
+    border:none;
+    outline:none;
+    resize:none;
+    border-radius:18px;
+    padding:15px;
+    font-size:15px;
+    background:rgba(255,255,255,.15);
+    color:white;
+}
+
+textarea::placeholder{
+    color:#ddd;
+}
+
+button{
+    margin-top:20px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(90deg,#00dbde,#fc00ff);
+    box-shadow:0 0 20px rgba(252,0,255,.6);
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 0 35px rgba(0,255,255,.8);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+.footer{
+    margin-top:18px;
+    color:#eee;
+    font-size:13px;
+}
+</style>
+
 </head>
 <body>
-  <h1>Dashboard TOKEN GRAB</h1>
 
-  <div class="card">
-    <h2>Status: <span id="status">Loading...</span></h2>
-    <select id="statusInput">
-      <option value="true">Online / Buka</option>
-      <option value="false">Offline / Tutup</option>
-    </select>
-    <button onclick="updateStatus()">Update Status</button>
-  </div>
+<div class="card">
 
-  <div class="card">
-    <h2>Pengumuman</h2>
-    <input type="text" id="pengumumanInput" placeholder="Tulis pengumuman">
-    <button onclick="updatePengumuman()">Kirim</button>
-    <hr>
-    <p id="pengumuman">Loading...</p>
-  </div>
+<div class="logo">
+🔑
+</div>
 
-  <div class="card">
-    <h2>Token Antrian: <span id="token">Loading...</span></h2>
-    <input type="text" id="tokenInput" placeholder="Contoh: A005">
-    <button onclick="updateToken()">Update Token</button>
-  </div>
+<h1>Token Grab</h1>
+<p>by MixRoot</p>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+<textarea id="token" placeholder="Paste token di sini..."></textarea>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAc...NDZXNn",
-    authDomain: "token-grab.firebaseapp.com",
-    databaseURL: "https://token-grab-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "token-grab",
-    storageBucket: "token-grab.firebasestorage.app",
-    messagingSenderId: "871882982034",
-    appId: "1:871882982034:web:7bd84c0eb44d5c0bb85c4b",
-    measurementId: "G-8KDDS9C5XC"
-  };
+<button onclick="copyToken()">
+📋 Copy Token
+</button>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+<div class="footer">
+© MixRoot
+</div>
 
-  // 1. Baca Real-time
-  onValue(ref(db, 'status/online'), (s) => {
-    document.getElementById('status').innerText = s.val() ? "Buka" : "Tutup";
-    document.getElementById('status').style.color = s.val() ? "green" : "red";
-  });
+</div>
 
-  onValue(ref(db, 'announcement/text'), (s) => {
-    document.getElementById('pengumuman').innerText = s.val() || "-";
-  });
-
-  onValue(ref(db, 'token/value'), (s) => {
-    document.getElementById('token').innerText = s.val() || "-";
-  });
-
-  // 2. Update
-  window.updateStatus = () => {
-    const val = document.getElementById('statusInput').value === "true";
-    set(ref(db, 'status/online'), val);
-  }
-
-  window.updatePengumuman = () => {
-    set(ref(db, 'announcement/text'), document.getElementById('pengumumanInput').value);
-  }
-
-  window.updateToken = () => {
-    set(ref(db, 'token/value'), document.getElementById('tokenInput').value);
-  }
+<script>
+function copyToken(){
+    const token=document.getElementById("token");
+    navigator.clipboard.writeText(token.value).then(()=>{
+        alert("✅ Token berhasil disalin!");
+    });
+}
 </script>
+
 </body>
 </html>
