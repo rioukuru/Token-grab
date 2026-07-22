@@ -1,80 +1,22 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Token Grab</title>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-<style>
-body{
-    margin:0;
-    background:#0d1117;
-    color:white;
-    font-family:Arial,sans-serif;
-}
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAcdhJstLFtbehN9r_NDZXNnkdU69B4wH0",
+  authDomain: "token-grab.firebaseapp.com",
+  databaseURL: "https://token-grab-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "token-grab",
+  storageBucket: "token-grab.firebasestorage.app",
+  messagingSenderId: "871882982034",
+  appId: "1:871882982034:web:7bd84c0eb44d5c0bb85c4b",
+  measurementId: "G-8KDDS9C5XC"
+};
 
-.container{
-    max-width:700px;
-    margin:auto;
-    padding:20px;
-}
-
-h1{
-    text-align:center;
-}
-
-.box{
-    background:#161b22;
-    border-radius:12px;
-    padding:15px;
-    margin-top:15px;
-}
-
-input,textarea{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:8px;
-    background:#21262d;
-    color:white;
-    box-sizing:border-box;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    background:#00c853;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-}
-
-pre{
-    white-space:pre-wrap;
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-<h1>TOKEN GRAB</h1>
-
-<div class="box">
-<h3>Status</h3>
-<pre id="status">Loading...</pre>
-</div>
-
-<div class="box">
-<h3>Announcement</h3>
-<pre id="announcement">Loading...</pre>
-</div>
-
-</div>
-
-</body>
-</html>
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
