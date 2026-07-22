@@ -88,6 +88,12 @@ label{
     word-break: break-all;
 }
 
+.status{
+    font-size:12px;
+    color:#0072ff;
+    margin-top:5px;
+}
+
 button{
     margin-top:15px;
     width:100%;
@@ -106,10 +112,6 @@ button{
 button:hover{
     transform:translateY(-3px) scale(1.03);
     box-shadow:0 0 35px rgba(0,198,255,.8);
-}
-
-button:active{
-    transform:scale(.96);
 }
 
 .note{
@@ -141,10 +143,6 @@ button:active{
     text-decoration:none;
 }
 
-.note a:hover{
-    text-decoration:underline;
-}
-
 .footer{
     margin-top:18px;
     color:#777;
@@ -165,7 +163,8 @@ button:active{
 <p>by MixRoot</p>
 
 <label>Token Aktif</label>
-<textarea id="token" readonly>eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJuand0IjoiZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklsOWtaV1poZFd4MElpd2lkSGx3SWpvaVNsZFVJbjAuZXlKaGRXUWlPaUpRUVZOVFJVNUhSVklpTENKamJtWWlPaUpNVXpCMFRGTXhRMUpWWkVwVWFVSkVVbFpLVlZOVldrcFJNRVpWVWxNd2RFeFRNSFJEYXpGS1UxVktSR1ZyVGtOak1rWkNVa1ZHYmxKVlRrSmFNRlpEVkZWR2RsSXdUa1JqVldSVVZGUlJOVkZyUms1Uk1ERkNUMGhvUlZaRlJrMVJiV1JQVm10S1FsUldVa05TVm5CdldWUktWbVF3YUc5Wk1EVlBaV3RHTTFSV1VrSmxSVEZGVVZoalMxUlZVa0prTVdSdldUQTFUMUpIWkROVVZsSkNaVVV4UlZGWVpFNVNSVVl6VmpKd1FsVkZNVkpOU0dSRVpERnNSVlpzUmxKU1JWWXpWV3RrV2xZelVuTlVWVnB5WkRCV00xZFZhRXhpTVhCS1pXMXZkMUV3UmxKWFZXeE1ZakZ3U21WdGIzZFNRWEJDVlZkT1JWVlhaRUpTVkZwVVQxUmthRnBYT0hkaU0yUjRWRmRhTkU5R2NIZFNiVVpSVFRGQ1Fsa3pjRVZYVm14VFkwUkpOR0ZYZUVwU2JtUk1VMVZ6TlZSdVpGVlJiR2N4VkVSYVRFMHhXbTVUUlVwSlVqQm9VbHBGV25KTldFVjRWbGM1U2tOcVduWk9WRUpHWTBoR1RHRkdWbTFVTVd4TFdWaFZOR0ZyUmt4UmJXUnVZMWRvY21Gck9WRlZWa1pGVVZka1QxTnJSa1ZSYTJSQ1lWVldRbVZZVGxwbGEzTjVUVWRSZGxGdGRESmxSRnBxV2tkNE1sWXdhREJpV0ZKaFdYcEdVVlZ0Vm01UlZ6aExXakpTVEZkdE1WUkxNazR6VFVWR1JGTldSa1ZVUTNSQ1lqSk5NV1ZJVG14aVJFRjJVakZDUzJOV1FtMVNWMFZ5VFZaamVsUnRPVWhXYVhRMFRVaFdibEl3T0hoT1ZFWlZWakZXVUZGVU1EbERhVEIwVEZNd2RGSlZOVVZKUlU1R1ZXeFNTbEpyYkVSUlZsSkdURk13ZEV4VE1EMGlMQ0psYzJraU9pSkxRbWhxY3pKamFIRllSelJYYzI1dmQybFFha00zZWtjM1ozZGxaSHBYYjFSWVJFb3hVRWRvTkdoeFEzcFRaejBpTENKbGVIQWlPalE1TXpneU5UTTROVElzSW1saGRDSTZNVGM0TkRZMU16ZzBPU3dpYW5ScElqb2lPVFZsTWpNd05EZ3RZVGt3WkMwME16VTVMVGcxWlRVdE9ERmhabUV6T1RRd05UZGlJaXdpYkcxbElqb2lVRWhQVGtWT1ZVMUNSVklpTENKdVlXMWxJam9pSWl3aWMzVmlJam9pTWpSa01EUTNOR0V0TldWaVl5MDBabUppTFdFMVl6VXRaamczTlRnM05UVTBaRFpoSW4wLmk0dXl2d1VkNkt1SldGc1NMTWhFbm85eUU1a2tua3liOU00NVY5b0FfN251cE1pbWZOQUc0ZlNOeE1lZkIzYTk3R0U4emNTX2pJRDNGZHoycWVGUjFwXy1CSnkzVjVDcHNtYUEwNWlCam5RSWRmZXRPVTZKWnc2YjBDLXBONnVncG1mV0tUSktGakhMSnVHUUdIX3FsMXhoeGl5TWIwZEVfWEJBbEVBWUxPWnZxbC1YbEprLVhTMmJCTU1ra2NHTldObzhjbjY2eUFlaWpaNnEyTTFSaFhWWkc4dThmWm11R2h3RDdDLTZhWERBZGpKeVR3akhKamQ4WkQ0bDl4NXNVWF9nTVAzSGphS1l5MU0tWklvYTA3dHlyQTdPTW8wU051UnNnMnUzVF9OMGQtM1NrNVhld0pfMTgxeU03ZVBncmZzWHdsQkozQnVZb2VHYThqMFF1eWdlQkFPNEc5VVYwV0ZVOEJKZVRTSUQzUTNQZUFocHROQUN2dS1Qbl9zbDY4OENtalJQR3N3V2lmaWJpMF92alFXTXRRc0tSMmdoZjJwTXRNWmMtTGpxbXVveXRpWTFBUml2bHgwUGtneHYxQi1mOTVaaG5PUWlkaXB4UkQ2ZzdLM056TjBlQ1lXTVUzODJfVmdLeGZlSVNRQnN4WUtJUWJHeWlobGJRUGVCLTBaREs1aDVXYjBWaVZZN0lqdXl2aGl6a3JVQWtvcGdHT3JnQ0x6N2tPaXVvV3YtNUZKVHJCa3Z2a3VLNjk0VDVMbVhiQy1ha2gyeFRpVktob29YOHFxNkd0bmIxTU1oQ0p0UktEZV8tZzdxdFdYTm5CRXloZjFrTGxsTDBvMWNVMXQ2YkllcjFtWkxTeW5felZKMlptQUdSN3ZEdjYzSUpjMFhyek5lX0JZIiwiaWF0IjoxNzg0NjgzMDgwLCJleHAiOjQ5MzgyNTM4NTIsInN1YiI6IjI0ZDA0NzRhLTVlYmMtNGZiYi1hNWM1LWY4NzU4NzU1NGQ2YSIsImF1ZCI6IlBBU1NFTkdFUiJ9.9AUljAkIO_eAWiiWYe6IebnLxk1sBpMnExIMQyj8OTMG2bDpsGq9ycPhyDZ8GxYnwsnjTYvalZ-pTW24B7yiQQ</textarea>
+<textarea id="token" readonly>Memuat token...</textarea>
+<div class="status" id="status">⏳ Menghubungkan ke Firebase...</div>
 
 <button onclick="copyToken()">
 📋 Salin Token
@@ -183,7 +182,32 @@ button:active{
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
 <script>
+// INI BAGIAN YANG KAMU GANTI
+const firebaseConfig = {
+  apiKey: "AIzaSyCmL-SDzNkLLblj9dUpsTAY4BTjCupb-U",
+  authDomain: "token-grab-mixroot.firebaseapp.com",
+  databaseURL: "https://token-grab-mixroot-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "token-grab-mixroot",
+  storageBucket: "token-grab-mixroot.firebasestorage.app",
+  messagingSenderId: "662244516958",
+  appId: "1:662244516958:web:5fc0da406b7f529f5240cf"
+};
+
+// Init Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Ambil data token secara real-time
+db.ref('token').on('value', (snapshot) => {
+  const data = snapshot.val();
+  document.getElementById('token').value = data || "Token kosong";
+  document.getElementById('status').innerText = "✅ Token terupdate: " + new Date().toLocaleTimeString();
+});
+
 function copyToken(){
     const token = document.getElementById("token");
     token.focus();
