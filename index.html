@@ -23,6 +23,7 @@ body{
     flex-direction:column;
 }
 
+/* Teks berjalan */
 .marquee{
     width:100%;
     max-width:420px;
@@ -80,6 +81,7 @@ h1{
     margin-bottom:15px;
 }
 
+/* Counter pengunjung */
 .visitor{
     background: linear-gradient(90deg, #00a8ff, #0077ff);
     color:white;
@@ -190,6 +192,7 @@ h1{
 </head>
 <body>
 
+<!-- Teks berjalan -->
 <div class="marquee">
     <span>SAFE SYSTEM PRIORITY</span>
 </div>
@@ -201,6 +204,7 @@ h1{
 <h1>Token Grab</h1>
 <p class="subtitle">by MixRoot</p>
 
+<!-- Counter Pengunjung -->
 <div class="visitor">👁️ Pengunjung Hari Ini: <span id="visitorCount">0</span></div>
 
 <p class="label">Token Aktif</p>
@@ -227,12 +231,15 @@ h1{
 
 </div>
 
+<!-- Background Music -->
 <audio id="bgMusic" src="auto_gacor.mp3" loop></audio>
 
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyCmL-SDzNkLlLblj9dUpsTAY4BTjCupb-U",
   authDomain: "token-grab-mixroot.firebaseapp.com",
@@ -244,10 +251,11 @@ const firebaseConfig = {
   measurementId: "G-X7FE7QRJJ9"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Ambil token
+// 1. Ambil data token dari Firebase
 const tokenRef = db.ref('token');
 tokenRef.on('value', (snapshot) => {
   const data = snapshot.val();
@@ -260,10 +268,11 @@ tokenRef.on('value', (snapshot) => {
   }
 });
 
-// Counter Pengunjung
-const today = new Date().toISOString().split('T')[0];
+// 2. Counter Pengunjung Harian
+const today = new Date().toISOString().split('T')[0]; // format YYYY-MM-DD
 const visitorRef = db.ref('visitors/' + today);
 
+// Cek apakah user ini sudah pernah masuk hari ini
 if(!sessionStorage.getItem('visited_today')){
     visitorRef.transaction((current) => {
         return (current || 0) + 1;
@@ -275,16 +284,17 @@ visitorRef.on('value', (snap) => {
     document.getElementById('visitorCount').innerText = snap.val() || 0;
 });
 
-// Background Music
+// 3. Background Music Autoplay
 window.addEventListener('load', () => {
     const music = document.getElementById('bgMusic');
-    music.volume = 0.3;
+    music.volume = 0.3; // kecilin volumenya
     music.play().catch(() => {
+        // kalau browser blokir autoplay, play pas klik pertama
         document.body.addEventListener('click', () => music.play(), {once: true});
     });
 });
 
-// Copy Token
+// 4. Fungsi copy
 function copyToken(){
     const tokenText = document.getElementById("token").innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
@@ -293,4 +303,10 @@ function copyToken(){
             document.getElementById('status').innerText = "✅ Token berhasil dimuat";
         }, 2000)
     }).catch(() => {
-        alert("Gagal menyalin. Coba tahan lama di kotak token > Salin
+        alert("Gagal menyalin. Coba tahan lama di kotak token > Salin");
+    });
+}
+</script>
+
+</body>
+</html>
