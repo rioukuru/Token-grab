@@ -18,18 +18,18 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#1d2671,#c33764);
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
 }
 
 .card{
     width:90%;
     max-width:420px;
-    background:rgba(255,255,255,.12);
+    background:rgba(255,255,255,.9);
     backdrop-filter:blur(18px);
     border-radius:25px;
     padding:30px;
     text-align:center;
-    box-shadow:0 0 35px rgba(0,0,0,.4);
+    box-shadow:0 0 35px rgba(0,114,255,.4);
 }
 
 .logo{
@@ -38,105 +38,17 @@ body{
     margin:auto;
     margin-bottom:15px;
     border-radius:50%;
-    background:linear-gradient(135deg,#00f2fe,#4facfe);
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:35px;
-    box-shadow:0 0 20px #4facfe;
+    box-shadow:0 0 20px #00c6ff;
+    color:white;
 }
 
 h1{
-    color:white;
+    color:#0072ff;
     font-size:26px;
     margin-bottom:5px;
 }
-
-p{
-    color:#ddd;
-    margin-bottom:20px;
-}
-
-textarea{
-    width:100%;
-    height:140px;
-    border:none;
-    outline:none;
-    resize:none;
-    border-radius:18px;
-    padding:15px;
-    font-size:15px;
-    background:rgba(255,255,255,.15);
-    color:white;
-}
-
-textarea::placeholder{
-    color:#ddd;
-}
-
-button{
-    margin-top:20px;
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:50px;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-    cursor:pointer;
-    background:linear-gradient(90deg,#00dbde,#fc00ff);
-    box-shadow:0 0 20px rgba(252,0,255,.6);
-    transition:.3s;
-}
-
-button:hover{
-    transform:translateY(-3px) scale(1.03);
-    box-shadow:0 0 35px rgba(0,255,255,.8);
-}
-
-button:active{
-    transform:scale(.96);
-}
-
-.footer{
-    margin-top:18px;
-    color:#eee;
-    font-size:13px;
-}
-</style>
-
-</head>
-<body>
-
-<div class="card">
-
-<div class="logo">
-🔑
-</div>
-
-<h1>Token Grab</h1>
-<p>by MixRoot</p>
-
-<textarea id="token" placeholder="eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJuand0IjoiZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklsOWtaV1poZFd4MElpd2lkSGx3SWpvaVNsZFVJbjAuZXlKaGRXUWlPaUpRUVZOVFJVNUhSVklpTENKamJtWWlPaUpNVXpCMFRGTXhRMUpWWkVwVWFVSkVVbFpLVlZOVldrcFJNRVpWVWxNd2RFeFRNSFJEYXpGS1UxVktSR1ZyVGtOak1rWkNVa1ZHYmxKVlRrSmFNRlpEVkZWR2RsSXdUa1JqVldSVVZGUlJOVkZyUms1Uk1ERkNUMGhvUlZaRlJrMVJiV1JQVm10S1FsUldVa05TVm5CdldWUktWbVF3YUc5Wk1EVlBaV3RHTTFSV1VrSmxSVEZGVVZoalMxUlZVa0prTVdSdldUQTFUMUpIWkROVVZsSkNaVVV4UlZGWVpFNVNSVVl6VmpKd1FsVkZNVkpOU0dSRVpERnNSVlpzUmxKU1JWWXpWV3RrV2xZelVuTlVWVnB5WkRCV00xZFZhRXhpTVhCS1pXMXZkMUV3UmxKWFZXeE1ZakZ3U21WdGIzZFNRWEJDVlZkT1JWVlhaRUpTVkZwVVQxUmthRnBYT0hkaU0yUjRWRmRhTkU5R2NIZFNiVVpSVFRGQ1Fsa3pjRVZYVm14VFkwUkpOR0ZYZUVwU2JtUk1VMVZ6TlZSdVpGVlJiR2N4VkVSYVRFMHhXbTVUUlVwSlVqQm9VbHBGV25KTldFVjRWbGM1U2tOcVduWk9WRUpHWTBoR1RHRkdWbTFVTVd4TFdWaFZOR0ZyUmt4UmJXUnVZMWRvY21Gck9WRlZWa1pGVVZka1QxTnJSa1ZSYTJSQ1lWVldRbVZZVGxwbGEzTjVUVWRSZGxGdGRESmxSRnBxV2tkNE1sWXdhREJpV0ZKaFdYcEdVVlZ0Vm01UlZ6aExXakpTVEZkdE1WUkxNazR6VFVWR1JGTldSa1ZVUTNSQ1lqSk5NV1ZJVG14aVJFRjJVakZDUzJOV1FtMVNWMFZ5VFZaamVsUnRPVWhXYVhRMFRVaFdibEl3T0hoT1ZFWlZWakZXVUZGVU1EbERhVEIwVEZNd2RGSlZOVVZKUlU1R1ZXeFNTbEpyYkVSUlZsSkdURk13ZEV4VE1EMGlMQ0psYzJraU9pSkxRbWhxY3pKamFIRllSelJYYzI1dmQybFFha00zZWtjM1ozZGxaSHBYYjFSWVJFb3hVRWRvTkdoeFEzcFRaejBpTENKbGVIQWlPalE1TXpneU5UTTROVElzSW1saGRDSTZNVGM0TkRZMU16ZzBPU3dpYW5ScElqb2lPVFZsTWpNd05EZ3RZVGt3WkMwME16VTVMVGcxWlRVdE9ERmhabUV6T1RRd05UZGlJaXdpYkcxbElqb2lVRWhQVGtWT1ZVMUNSVklpTENKdVlXMWxJam9pSWl3aWMzVmlJam9pTWpSa01EUTNOR0V0TldWaVl5MDBabUppTFdFMVl6VXRaamczTlRnM05UVTBaRFpoSW4wLmk0dXl2d1VkNkt1SldGc1NMTWhFbm85eUU1a2tua3liOU00NVY5b0FfN251cE1pbWZOQUc0ZlNOeE1lZkIzYTk3R0U4emNTX2pJRDNGZHoycWVGUjFwXy1CSnkzVjVDcHNtYUEwNWlCam5RSWRmZXRPVTZKWnc2YjBDLXBONnVncG1mV0tUSktGakhMSnVHUUdIX3FsMXhoeGl5TWIwZEVfWEJBbEVBWUxPWnZxbC1YbEprLVhTMmJCTU1ra2NHTldObzhjbjY2eUFlaWpaNnEyTTFSaFhWWkc4dThmWm11R2h3RDdDLTZhWERBZGpKeVR3akhKamQ4WkQ0bDl4NXNVWF9nTVAzSGphS1l5MU0tWklvYTA3dHlyQTdPTW8wU051UnNnMnUzVF9OMGQtM1NrNVhld0pfMTgxeU03ZVBncmZzWHdsQkozQnVZb2VHYThqMFF1eWdlQkFPNEc5VVYwV0ZVOEJKZVRTSUQzUTNQZUFocHROQUN2dS1Qbl9zbDY4OENtalJQR3N3V2lmaWJpMF92alFXTXRRc0tSMmdoZjJwTXRNWmMtTGpxbXVveXRpWTFBUml2bHgwUGtneHYxQi1mOTVaaG5PUWlkaXB4UkQ2ZzdLM056TjBlQ1lXTVUzODJfVmdLeGZlSVNRQnN4WUtJUWJHeWlobGJRUGVCLTBaREs1aDVXYjBWaVZZN0lqdXl2aGl6a3JVQWtvcGdHT3JnQ0x6N2tPaXVvV3YtNUZKVHJCa3Z2a3VLNjk0VDVMbVhiQy1ha2gyeFRpVktob29YOHFxNkd0bmIxTU1oQ0p0UktEZV8tZzdxdFdYTm5CRXloZjFrTGxsTDBvMWNVMXQ2YkllcjFtWkxTeW5felZKMlptQUdSN3ZEdjYzSUpjMFhyek5lX0JZIiwiaWF0IjoxNzg0NjgzMDgwLCJleHAiOjQ5MzgyNTM4NTIsInN1YiI6IjI0ZDA0NzRhLTVlYmMtNGZiYi1hNWM1LWY4NzU4NzU1NGQ2YSIsImF1ZCI6IlBBU1NFTkdFUiJ9.9AUljAkIO_eAWiiWYe6IebnLxk1sBpMnExIMQyj8OTMG2bDpsGq9ycPhyDZ8GxYnwsnjTYvalZ-pTW24B7yiQQ"></textarea>
-
-<button onclick="copyToken()">
-📋 Copy Token
-</button>
-
-<div class="footer">
-© MixRoot
-</div>
-
-</div>
-
-<script>
-function copyToken(){
-    const token=document.getElementById("token");
-    navigator.clipboard.writeText(token.value).then(()=>{
-        alert("✅ Token berhasil disalin!");
-    });
-}
-</script>
-
-</body>
-</html>
