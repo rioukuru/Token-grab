@@ -1,105 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JOKI NOW</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin TOKEN GRAB</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f2f2f2; }
+    .card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { color: #FF5722; }
+    input, button, select { padding: 12px; margin: 5px 0; border-radius: 8px; border: 1px solid #ddd; width: 100%; box-sizing: border-box; }
+    button { background: #FF5722; color: white; cursor: pointer; font-weight: bold; border: none; }
+    button:hover { background: #E64A19; }
+    #status { font-size: 24px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+  <h1>Dashboard TOKEN GRAB</h1>
+
+  <div class="card">
+    <h2>Status Sekarang: <span id="status">Loading...</span></h2>
+    <select id="statusInput">
+      <option value="Buka">Buka</option>
+      <option value="Tutup">Tutup</option>
+      <option value="Antrian Penuh">Antrian Penuh</option>
+    </select>
+    <button onclick="updateStatus()">Update Status</button>
+  </div>
+
+  <div class="card">
+    <h2>Kirim Pengumuman</h2>
+    <input type="text" id="judulInput" placeholder="Judul Pengumuman">
+    <input type="text" id="isiInput" placeholder="Isi Pengumuman">
+    <button onclick="updatePengumuman()">Kirim</button>
+    <hr>
+    <h3 id="judul-pengumuman">Belum ada</h3>
+    <p id="isi-pengumuman">-</p>
+  </div>
+
+  <div class="card">
+    <h2>Token Antrian: <span id="token">-</span></h2>
+  </div>
 
 <script type="module">
+  // 1. Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  // 2. CONFIG KAMU DARI FIREBASE
+  const firebaseConfig = {
+    apiKey: "AIzaSyAc...NDZXNn",
+    authDomain: "token-grab.firebaseapp.com",
+    databaseURL: "https://token-grab-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "token-grab",
+    storageBucket: "token-grab.firebasestorage.app",
+    messagingSenderId: "871882982034",
+    appId: "1:871882982034:web:7bd84c0eb44d5c0bb85c4b",
+    measurementId: "G-8KDDS9C5XC"
+  };
 
-const firebaseConfig = {
-apiKey: "AIzaSyAcdhJstLFtbehN9r_NDZXNnkdU69B4wH0",
-authDomain: "token-grab.firebaseapp.com",
-databaseURL: "https://token-grab-default-rtdb.asia-southeast1.firebasedatabase.app",
-projectId: "token-grab",
-storageBucket: "token-grab.firebasestorage.app",
-messagingSenderId: "871882982034",
-appId: "1:871882982034:web:7bd84c0eb44d5c0bb85c4b"
-};
+  // 3. Inisialisasi
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+  // 4. Baca Data Real-time
+  onValue(ref(db, 'status'), (snapshot) => {
+    document.getElementById('status').innerText = snapshot.val() || "Kosong";
+  });
 
-onValue(ref(db,"token/value"),(snap)=>{
-document.getElementById("token").innerHTML=snap.val();
-});
+  onValue(ref(db, 'announcement'), (snapshot) => {
+    const data = snapshot.val();
+    if(data){
+      document.getElementById('judul-pengumuman').innerText = data.judul || "-";
+      document.getElementById('isi-pengumuman').innerText = data.isi || "-";
+    }
+  });
 
-onValue(ref(db,"announcement/text"),(snap)=>{
-document.getElementById("info").innerHTML=snap.val();
-});
+  onValue(ref(db, 'token'), (snapshot) => {
+    document.getElementById('token').innerText = snapshot.val() || "-";
+  });
 
-onValue(ref(db,"status/online"),(snap)=>{
-document.getElementById("status").innerHTML=snap.val() ? "🟢 ONLINE" : "🔴 OFFLINE";
-});
+  // 5. Fungsi Update Data
+  window.updateStatus = () => {
+    const val = document.getElementById('statusInput').value;
+    set(ref(db, 'status'), val);
+  }
 
-window.copyToken=function(){
-navigator.clipboard.writeText(document.getElementById("token").innerHTML);
-alert("Token berhasil dicopy");
-}
-
+  window.updatePengumuman = () => {
+    set(ref(db, 'announcement'), {
+      judul: document.getElementById('judulInput').value,
+      isi: document.getElementById('isiInput').value
+    });
+  }
 </script>
-
-<style>
-
-body{
-background:#101010;
-color:white;
-font-family:Arial;
-text-align:center;
-padding:20px;
-}
-
-.box{
-background:#1b1b1b;
-padding:20px;
-border-radius:15px;
-margin:15px auto;
-max-width:500px;
-box-shadow:0 0 20px lime;
-}
-
-button{
-background:lime;
-color:black;
-padding:12px;
-border:0;
-border-radius:10px;
-font-weight:bold;
-width:100%;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h1>JOKI NOW</h1>
-
-<div class="box">
-
-<h2 id="status">Loading...</h2>
-
-<h3>eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJuand0IjoiZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklsOWtaV1poZFd4MElpd2lkSGx3SWpvaVNsZFVJbjAuZXlKaGRXUWlPaUpRUVZOVFJVNUhSVklpTENKamJtWWlPaUpNVXpCMFRGTXhRMUpWWkVwVWFVSkVVbFpLVlZOVldrcFJNRVpWVWxNd2RFeFRNSFJEYXpGS1UxVktSR1ZyVGtOak1rWkNVa1ZHYmxKVlRrSmFNRlpEVkZWR2RsSXdUa1JqVldSVVZGUlJOVkZyUms1Uk1ERkNUMGhvUlZaRlJrMVJiV1JQVm10S1FsUldVa05TVm5CdldWUktWbVF3YUc5Wk1EVlBaV3RHTTFSV1VrSmxSVEZGVVZoalMxUlZVa0prTVdSdldUQTFUMUpIWkROVVZsSkNaVVV4UlZGWVpFNVNSVVl6VmpKd1FsVkZNVkpOU0dSRVpERnNSVlpzUmxKU1JWWXpWV3RrV2xZelVuTlVWVnB5WkRCV00xZFZhRXhpTVhCS1pXMXZkMUV3UmxKWFZXeE1ZakZ3U21WdGIzZFNRWEJDVlZkT1JWVlhaRUpTVkZwVVQxUmthRnBYT0hkaU0yUjRWRmRhTkU5R2NIZFNiVVpSVFRGQ1Fsa3pjRVZYVm14VFkwUkpOR0ZYZUVwU2JtUk1VMVZ6TlZSdVpGVlJiR2N4VkVSYVRFMHhXbTVUUlVwSlVqQm9VbHBGV25KTldFVjRWbGM1U2tOcVduWk9WRUpHWTBoR1RHRkdWbTFVTVd4TFdWaFZOR0ZyUmt4UmJXUnVZMWRvY21Gck9WRlZWa1pGVVZka1QxTnJSa1ZSYTJSQ1lWVldRbVZZVGxwbGEzTjVUVWRSZGxGdGRESmxSRnBxV2tkNE1sWXdhREJpV0ZKaFdYcEdVVlZ0Vm01UlZ6aExXakpTVEZkdE1WUkxNazR6VFVWR1JGTldSa1ZVUTNSQ1lqSk5NV1ZJVG14aVJFRjJVakZDUzJOV1FtMVNWMFZ5VFZaamVsUnRPVWhXYVhRMFRVaFdibEl3T0hoT1ZFWlZWakZXVUZGVU1EbERhVEIwVEZNd2RGSlZOVVZKUlU1R1ZXeFNTbEpyYkVSUlZsSkdURk13ZEV4VE1EMGlMQ0psYzJraU9pSkxRbWhxY3pKamFIRllSelJYYzI1dmQybFFha00zZWtjM1ozZGxaSHBYYjFSWVJFb3hVRWRvTkdoeFEzcFRaejBpTENKbGVIQWlPalE1TXpneU5UTTROVElzSW1saGRDSTZNVGM0TkRZMU16ZzBPU3dpYW5ScElqb2lPVFZsTWpNd05EZ3RZVGt3WkMwME16VTVMVGcxWlRVdE9ERmhabUV6T1RRd05UZGlJaXdpYkcxbElqb2lVRWhQVGtWT1ZVMUNSVklpTENKdVlXMWxJam9pSWl3aWMzVmlJam9pTWpSa01EUTNOR0V0TldWaVl5MDBabUppTFdFMVl6VXRaamczTlRnM05UVTBaRFpoSW4wLmk0dXl2d1VkNkt1SldGc1NMTWhFbm85eUU1a2tua3liOU00NVY5b0FfN251cE1pbWZOQUc0ZlNOeE1lZkIzYTk3R0U4emNTX2pJRDNGZHoycWVGUjFwXy1CSnkzVjVDcHNtYUEwNWlCam5RSWRmZXRPVTZKWnc2YjBDLXBONnVncG1mV0tUSktGakhMSnVHUUdIX3FsMXhoeGl5TWIwZEVfWEJBbEVBWUxPWnZxbC1YbEprLVhTMmJCTU1ra2NHTldObzhjbjY2eUFlaWpaNnEyTTFSaFhWWkc4dThmWm11R2h3RDdDLTZhWERBZGpKeVR3akhKamQ4WkQ0bDl4NXNVWF9nTVAzSGphS1l5MU0tWklvYTA3dHlyQTdPTW8wU051UnNnMnUzVF9OMGQtM1NrNVhld0pfMTgxeU03ZVBncmZzWHdsQkozQnVZb2VHYThqMFF1eWdlQkFPNEc5VVYwV0ZVOEJKZVRTSUQzUTNQZUFocHROQUN2dS1Qbl9zbDY4OENtalJQR3N3V2lmaWJpMF92alFXTXRRc0tSMmdoZjJwTXRNWmMtTGpxbXVveXRpWTFBUml2bHgwUGtneHYxQi1mOTVaaG5PUWlkaXB4UkQ2ZzdLM056TjBlQ1lXTVUzODJfVmdLeGZlSVNRQnN4WUtJUWJHeWlobGJRUGVCLTBaREs1aDVXYjBWaVZZN0lqdXl2aGl6a3JVQWtvcGdHT3JnQ0x6N2tPaXVvV3YtNUZKVHJCa3Z2a3VLNjk0VDVMbVhiQy1ha2gyeFRpVktob29YOHFxNkd0bmIxTU1oQ0p0UktEZV8tZzdxdFdYTm5CRXloZjFrTGxsTDBvMWNVMXQ2YkllcjFtWkxTeW5felZKMlptQUdSN3ZEdjYzSUpjMFhyek5lX0JZIiwiaWF0IjoxNzg0NjgzMDgwLCJleHAiOjQ5MzgyNTM4NTIsInN1YiI6IjI0ZDA0NzRhLTVlYmMtNGZiYi1hNWM1LWY4NzU4NzU1NGQ2YSIsImF1ZCI6IlBBU1NFTkdFUiJ9.9AUljAkIO_eAWiiWYe6IebnLxk1sBpMnExIMQyj8OTMG2bDpsGq9ycPhyDZ8GxYnwsnjTYvalZ-pTW24B7yiQQ</h3>
-
-<h2 id="token">Loading...</h2>
-
-<button onclick="copyToken()">
-COPY TOKEN
-</button>
-
-</div>
-
-<div class="box">
-
-<h3>PENGUMUMAN</h3>
-
-<p id="info">Loading...</p>
-
-</div>
-
 </body>
 </html>
