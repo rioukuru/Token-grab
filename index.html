@@ -60,8 +60,9 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 
 .music-box{background: linear-gradient(135deg, #6a11cb, #2575fc);border-radius:20px;padding:15px;margin-bottom:20px;color:white;}
 .music-title{font-weight:800;margin-bottom:10px;font-size:14px;}
-.music-controls{display:flex;gap:10px;}
-.music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;}
+.music-controls{display:flex;gap:8px;}
+.music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;font-size:14px;}
+.music-btn:active{transform:scale(0.95);}
 .music-select{width:100%;padding:10px;border-radius:15px;border:none;margin-bottom:10px;font-weight:600;background:white;color:#333;}
 
 /* BOX LAYAN BARU */
@@ -131,10 +132,15 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
         <option value="auto_gacor.mp3">1. Auto Gacor</option>
         <option value="losdol.mp3">2. DJ Los Dol</option>
         <option value="DreamTheater.mp3">3. Dream Theater</option>
+        <option value="MixRootSolusi.mp3">4. MixRoot Solusi</option>
+        <option value="themes mixroot.mp3">5. Themes Mixroot</option>
+        <option value="dj safe and sound.mp3">6. DJ Safe and Sound</option>
     </select>
     <div class="music-controls">
+        <button class="music-btn" onclick="prevMusic()">⏮️ Prev</button>
         <button class="music-btn" onclick="playMusic()">▶️ Play</button>
         <button class="music-btn" onclick="pauseMusic()">⏸️ Stop</button>
+        <button class="music-btn" onclick="nextMusic()">⏭️ Next</button>
     </div>
 </div>
 
@@ -214,6 +220,8 @@ const music = document.getElementById('bgMusic');
 const musicSelect = document.getElementById('musicSelect');
 music.volume = 0.3;
 
+const playlist = Array.from(musicSelect.options).map(opt => opt.value);
+
 // === FUNGSI POPUP ===
 function showPopup(message){
     const popup = document.getElementById('popup');
@@ -221,8 +229,36 @@ function showPopup(message){
     popup.classList.add('show');
     setTimeout(() => {
         popup.classList.remove('show');
-    }, 2000); // hilang setelah 2 detik
+    }, 2000);
 }
+
+// === FUNGSI MUSIK PREV NEXT ===
+function playMusic(){
+    music.src = musicSelect.value;
+    music.play().then(() => {
+        document.getElementById('status').innerText = "🎵 Musik diputar: " + musicSelect.options[musicSelect.selectedIndex].text;
+    }).catch(() => {
+        alert("Klik sekali di layar dulu biar musik bisa play");
+    });
+}
+function pauseMusic(){
+    music.pause();
+    document.getElementById('status').innerText = "⏸️ Musik dihentikan";
+}
+
+function nextMusic(){
+    musicSelect.selectedIndex = (musicSelect.selectedIndex + 1) % playlist.length;
+    playMusic();
+}
+
+function prevMusic(){
+    musicSelect.selectedIndex = (musicSelect.selectedIndex - 1 + playlist.length) % playlist.length;
+    playMusic();
+}
+
+musicSelect.addEventListener('change', () => {
+    music.src = musicSelect.value;
+})
 
 // === FUNGSI CUACA + ANIMASI ICON ===
 function setWeatherIcon(code){
@@ -279,25 +315,6 @@ if('getBattery' in navigator){
     document.getElementById('batteryLevel').innerText = 'N/A';
 }
 
-// === KODE LAMA ===
-musicSelect.addEventListener('change', () => {
-    music.src = musicSelect.value;
-    music.play().catch(()=>{});
-})
-function playMusic(){
-    music.src = musicSelect.value;
-    music.play().then(() => {
-        document.getElementById('status').innerText = "🎵 Musik diputar";
-        setTimeout(() => {document.getElementById('status').innerText = "✅ Token berhasil dimuat"}, 2000)
-    }).catch(() => {
-        alert("Klik sekali di layar dulu biar musik bisa play");
-    });
-}
-function pauseMusic(){
-    music.pause();
-    document.getElementById('status').innerText = "⏸️ Musik dihentikan";
-    setTimeout(() => {document.getElementById('status').innerText = "✅ Token berhasil dimuat"}, 2000)
-}
 function updateClock(){
     const now = new Date();
     const time = now.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
@@ -344,7 +361,7 @@ totalVisitorRef.on('value', (snap) => {
 function copyToken(id, nama){
     const tokenText = document.getElementById(id).innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
-        showPopup(`📋 Token ${nama} berhasil disalin!`); // POPUP MUNCUL
+        showPopup(`📋 Token ${nama} berhasil disalin!`);
         document.getElementById('status').innerText = `✅ Token ${nama} berhasil disalin`;
         setTimeout(() => { document.getElementById('status').innerText = "✅ Token berhasil dimuat" }, 2000)
     }).catch(() => {
