@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Token Grab by MixRoot</title>
 
-<!-- Font Digital -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
@@ -19,55 +18,77 @@ body{min-height:100vh;display:flex;justify-content:center;align-items:center;bac
 @keyframes marquee{0% { transform: translate(0, 0); }100% { transform: translate(-100%, 0); }}
 .container{width:100%;max-width:420px;background: linear-gradient(180deg, #ffffff, #e6f3ff);border-radius:30px;padding:30px 25px;text-align:center;box-shadow: 0 15px 50px rgba(0,119,255,0.3);border: 2px solid rgba(0,168,255,0.2);}
 .logo{width:120px;height:120px;margin:0 auto 15px;border-radius:50%;object-fit:cover;box-shadow: 0 0 30px #00a8ff;border: 4px solid #00a8ff;}
-h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;text-shadow: 0 2px 10px rgba(0,119,255,0.2);}
+h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 .subtitle{color:#555;font-size:16px;margin-bottom:15px;}
-.visitor{background: linear-gradient(90deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;font-weight:bold;font-size:14px;margin-bottom:20px;box-shadow: 0 5px 20px rgba(0,119,255,0.4);}
+.visitor{background: linear-gradient(90deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;font-weight:bold;font-size:14px;margin-bottom:15px;}
+
+/* Widget Baru + Animasi */
+.widget-row{display:flex;gap:10px;margin-bottom:20px;}
+.widget{flex:1;background: linear-gradient(135deg, rgba(0,168,255,0.1), rgba(0,119,255,0.1));border:2px solid #00a8ff;border-radius:15px;padding:12px;text-align:center;position:relative;overflow:hidden;}
+.widget-title{font-size:11px;font-weight:800;color:#0077ff;margin-bottom:5px;}
+.widget-value{font-size:16px;font-weight:900;color:#0077ff;}
+.widget-sub{font-size:10px;color:#555;}
+.weather-icon{font-size:28px;margin-bottom:5px;display:inline-block;}
+
+/* Animasi Cuaca */
+@keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes spin {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes rain {0%{transform:translateY(-10px);opacity:0}50%{opacity:1}100%{transform:translateY(20px);opacity:0}}
+.sun {animation: float 3s ease-in-out infinite;}
+.cloud {animation: float 4s ease-in-out infinite;}
+.rain {position:relative;}
+.rain::after{content:'💧';position:absolute;font-size:10px;top:20px;left:50%;transform:translateX(-50%);animation:rain 1s linear infinite;}
+.wind {animation: spin 2s linear infinite;}
+
 .label{text-align:left;color:#0077ff;font-weight:700;font-size:16px;margin-bottom:10px;}
-.token-box{width:100%;min-height:160px;border:3px solid #00a8ff;border-radius:20px;padding:15px;font-size:13px;background:white;color:#333;text-align:left;word-break:break-all;line-height:1.5;margin-bottom:20px;box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);}
+.token-box{width:100%;min-height:160px;border:3px solid #00a8ff;border-radius:20px;padding:15px;font-size:13px;background:white;color:#333;text-align:left;word-break:break-all;line-height:1.5;margin-bottom:20px;}
 .btn{width:100%;padding:16px;border:none;border-radius:50px;font-size:18px;font-weight:bold;color:white;cursor:pointer;background: linear-gradient(90deg, #00a8ff, #0077ff);box-shadow: 0 5px 20px rgba(0,119,255,0.4);transition:.3s;margin-bottom:12px;text-decoration:none;display:block;}
-.btn:hover{transform:translateY(-3px);box-shadow: 0 8px 30px rgba(0,119,255,0.6);}
-.btn-wa{background: linear-gradient(90deg, #25D366, #128C7E);box-shadow: 0 5px 20px rgba(37,211,102,0.4);}
-.btn-wa:hover{box-shadow: 0 8px 30px rgba(37,211,102,0.6);}
-.music-box{background: linear-gradient(135deg, #6a11cb, #2575fc);border-radius:20px;padding:15px;margin-bottom:20px;color:white;box-shadow: 0 5px 20px rgba(106,17,203,0.4);}
+.btn:hover{transform:translateY(-3px);}
+.btn-wa{background: linear-gradient(90deg, #25D366, #128C7E);}
+.music-box{background: linear-gradient(135deg, #6a11cb, #2575fc);border-radius:20px;padding:15px;margin-bottom:20px;color:white;}
 .music-title{font-weight:800;margin-bottom:10px;font-size:14px;}
 .music-controls{display:flex;gap:10px;}
-.music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;transition:.3s;}
-.music-btn:hover{background:rgba(255,255,255,0.3);}
+.music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;}
 .music-select{width:100%;padding:10px;border-radius:15px;border:none;margin-bottom:10px;font-weight:600;background:white;color:#333;}
-.warning-box{background: linear-gradient(135deg, #fff9e6, #fff3cd);border: 2px solid #ffc107;border-radius:20px;padding:18px;text-align:left;margin:20px 0;box-shadow: 0 5px 15px rgba(255,193,7,0.2);}
+.warning-box{background: linear-gradient(135deg, #fff9e6, #fff3cd);border: 2px solid #ffc107;border-radius:20px;padding:18px;text-align:left;margin:20px 0;}
 .warning-title{color:#dc3545;font-weight:800;font-size:16px;text-align:center;margin-bottom:10px;}
-.warning-text{color:#444;font-size:14px;line-height:1.6;}
-.warning-text a{color:#0077ff;font-weight:bold;text-decoration:none;}
-.bypass-inside{background: linear-gradient(135deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;margin:15px 0;text-align:center;box-shadow: 0 4px 15px rgba(0,119,255,0.3);}
-.bypass-inside-title{font-weight:800;font-size:14px;}
+.bypass-inside{background: linear-gradient(135deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;margin:15px 0;text-align:center;}
 .footer{color:#666;font-size:13px;margin-top:10px;font-weight:600;}
 .status{font-size:12px;color:#0077ff;margin-bottom:10px;font-weight:600;}
 </style>
 </head>
 <body>
 
-<!-- Jam Digital Gelembung -->
 <div class="clock-bubble">
     <div class="clock" id="clock">00:00:00</div>
     <div class="clock-date" id="clockDate">Senin, 1 Januari 2026</div>
 </div>
 
-<!-- Teks berjalan -->
-<div class="marquee">
-    <span>SAFE SYSTEM PRIORITY</span>
-</div>
+<div class="marquee"><span>SAFE SYSTEM PRIORITY</span></div>
 
 <div class="container">
 
 <img src="ic_launcher.png" alt="Logo MixRoot" class="logo">
-
 <h1>Token Grab</h1>
 <p class="subtitle">by MixRoot</p>
-
-<!-- Counter Pengunjung TOTAL -->
 <div class="visitor">👁️ Total Pengunjung: <span id="visitorCount">0</span></div>
 
-<!-- Music Player -->
+<!-- WIDGET CUACA + BATERAI -->
+<div class="widget-row">
+    <div class="widget">
+        <div class="weather-icon" id="weatherIcon">🌤️</div>
+        <div class="widget-title">CUACA</div>
+        <div class="widget-value" id="weatherTemp">--°C</div>
+        <div class="widget-sub" id="weatherLoc">Mendeteksi...</div>
+    </div>
+    <div class="widget">
+        <div class="weather-icon">🔋</div>
+        <div class="widget-title">BATERAI</div>
+        <div class="widget-value" id="batteryLevel">--%</div>
+        <div class="widget-sub" id="batteryStatus">Cek...</div>
+    </div>
+</div>
+
 <div class="music-box">
     <div class="music-title">🎵 Music Player</div>
     <select id="musicSelect" class="music-select">
@@ -83,40 +104,26 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;text-shadow: 0
 
 <p class="label">Token Aktif</p>
 <div id="token" class="token-box">Memuat token dari Firebase...</div>
-
 <button class="btn" onclick="copyToken()">📋 Salin Token</button>
-
 <a href="https://wa.me/6285161769441" target="_blank" class="btn btn-wa">💬 WhatsApp Admin</a>
-
 <div class="status" id="status"></div>
 
 <div class="warning-box">
     <div class="warning-title">⚠️ JASA BYPASS SUSPEN GRAB 7 HARI!</div>
     <div class="bypass-inside">
-        <div class="bypass-inside-title">🚀 ROOT BYPASS VERMUK ALL APLIKASI OJOL</div>
+        <div>🚀 ROOT BYPASS VERMUK ALL APLIKASI OJOL</div>
         <div>Tembus Semua!</div>
-    </div>
-    <div class="warning-text">
-        Langsung aja konsultasi ke sini bro:<br><br>
-        📱 Telegram Admin:<br>
-        <a href="https://t.me/driversantuy" target="_blank">https://t.me/driversantuy</a><br><br>
-        👥 Grup Publik:<br>
-        <a href="https://t.me/mixrootstore" target="_blank">https://t.me/mixrootstore</a>
     </div>
 </div>
 
 <div class="footer">created by Rioukuru</div>
 </div>
 
-<!-- Background Music -->
 <audio id="bgMusic" loop></audio>
-
-<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
-// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyCmL-SDzNkLlLblj9dUpsTAY4BTjCupb-U",
   authDomain: "token-grab-mixroot.firebaseapp.com",
@@ -124,11 +131,8 @@ const firebaseConfig = {
   projectId: "token-grab-mixroot",
   storageBucket: "token-grab-mixroot.firebasestorage.app",
   messagingSenderId: "662244516958",
-  appId: "1:662244516958:web:5fc0da406b7f529f5240cf",
-  measurementId: "G-X7FE7QRJJ9"
+  appId: "1:662244516958:web:5fc0da406b7f529f5240cf"
 };
-
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -136,13 +140,91 @@ const music = document.getElementById('bgMusic');
 const musicSelect = document.getElementById('musicSelect');
 music.volume = 0.3;
 
-// Ganti lagu saat pilih
+// === FUNGSI CUACA + ANIMASI ICON ===
+function setWeatherIcon(code){
+    const icon = document.getElementById('weatherIcon');
+    icon.className = 'weather-icon'; // reset class
+    
+    // Kode cuaca dari Open-Meteo
+    if(code === 0 || code === 1){ // Cerah
+        icon.innerHTML = '☀️';
+        icon.classList.add('sun');
+    }
+    else if(code === 2 || code === 3){ // Berawan
+        icon.innerHTML = '☁️';
+        icon.classList.add('cloud');
+    }
+    else if(code >= 45 && code <= 48){ // Kabut
+        icon.innerHTML = '🌫️';
+        icon.classList.add('cloud');
+    }
+    else if(code >= 51 && code <= 67){ // Hujan
+        icon.innerHTML = '🌧️';
+        icon.classList.add('rain');
+    }
+    else if(code >= 71 && code <= 77){ // Salju
+        icon.innerHTML = '❄️';
+        icon.classList.add('cloud');
+    }
+    else if(code >= 80 && code <= 82){ // Hujan deras
+        icon.innerHTML = '⛈️';
+        icon.classList.add('rain');
+    }
+    else if(code >= 95){ // Badai
+        icon.innerHTML = '🌩️';
+        icon.classList.add('wind');
+    }
+    else{
+        icon.innerHTML = '🌤️';
+    }
+}
+
+function getWeather(lat, lon){
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('weatherTemp').innerText = data.current_weather.temperature + '°C';
+        setWeatherIcon(data.current_weather.weathercode); // <-- ini buat ganti icon animasi
+        
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+        .then(r => r.json())
+        .then(loc => {
+            document.getElementById('weatherLoc').innerText = loc.address.city || loc.address.town || 'Lokasi';
+        })
+    }).catch(()=>{
+        document.getElementById('weatherTemp').innerText = 'Error';
+        document.getElementById('weatherLoc').innerText = 'Gagal';
+    })
+}
+
+if("geolocation" in navigator){
+    navigator.geolocation.getCurrentPosition(pos => {
+        getWeather(pos.coords.latitude, pos.coords.longitude);
+    }, err => {
+        document.getElementById('weatherLoc').innerText = 'Izin ditolak';
+    })
+}
+
+// === BATERAI REALTIME ===
+if('getBattery' in navigator){
+    navigator.getBattery().then(battery => {
+        function updateBattery(){
+            document.getElementById('batteryLevel').innerText = Math.round(battery.level * 100) + '%';
+            document.getElementById('batteryStatus').innerText = battery.charging ? '⚡ Charging' : '🔌 Lepas';
+        }
+        updateBattery();
+        battery.addEventListener('levelchange', updateBattery);
+        battery.addEventListener('chargingchange', updateBattery);
+    });
+}else{
+    document.getElementById('batteryLevel').innerText = 'N/A';
+}
+
+// === KODE LAMA ===
 musicSelect.addEventListener('change', () => {
     music.src = musicSelect.value;
     music.play().catch(()=>{});
 })
-
-// Fungsi Play
 function playMusic(){
     music.src = musicSelect.value;
     music.play().then(() => {
@@ -152,15 +234,11 @@ function playMusic(){
         alert("Klik sekali di layar dulu biar musik bisa play");
     });
 }
-
-// Fungsi Stop
 function pauseMusic(){
     music.pause();
     document.getElementById('status').innerText = "⏸️ Musik dihentikan";
     setTimeout(() => {document.getElementById('status').innerText = "✅ Token berhasil dimuat"}, 2000)
 }
-
-// 1. Jam Digital
 function updateClock(){
     const now = new Date();
     const time = now.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
@@ -171,7 +249,6 @@ function updateClock(){
 setInterval(updateClock, 1000);
 updateClock();
 
-// 2. Ambil data token dari Firebase
 const tokenRef = db.ref('token');
 tokenRef.on('value', (snapshot) => {
   const data = snapshot.val();
@@ -180,32 +257,23 @@ tokenRef.on('value', (snapshot) => {
     document.getElementById('status').innerText = "✅ Token berhasil dimuat";
   } else {
     document.getElementById('token').innerText = "Token belum diisi di Firebase";
-    document.getElementById('status').innerText = "⚠️ Kosong";
   }
 });
 
-// 3. Counter Pengunjung TOTAL
 const totalVisitorRef = db.ref('visitors_total');
-
 if(!sessionStorage.getItem('visited_total')){
-    totalVisitorRef.transaction((current) => {
-        return (current || 0) + 1;
-    });
+    totalVisitorRef.transaction((current) => { return (current || 0) + 1; });
     sessionStorage.setItem('visited_total', 'true');
 }
-
 totalVisitorRef.on('value', (snap) => {
     document.getElementById('visitorCount').innerText = snap.val() || 0;
 });
 
-// 4. Fungsi copy
 function copyToken(){
     const tokenText = document.getElementById("token").innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
         document.getElementById('status').innerText = "📋 Token berhasil disalin!";
-        setTimeout(() => {
-            document.getElementById('status').innerText = "✅ Token berhasil dimuat";
-        }, 2000)
+        setTimeout(() => { document.getElementById('status').innerText = "✅ Token berhasil dimuat" }, 2000)
     }).catch(() => {
         alert("Gagal menyalin. Coba tahan lama di kotak token > Salin");
     });
