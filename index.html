@@ -42,8 +42,11 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 .wind {animation: spin 2s linear infinite;}
 .emoji-bounce{display:inline-block;animation: bounce 1.5s ease-in-out infinite;}
 
-.label{text-align:left;color:#0077ff;font-weight:700;font-size:16px;margin-bottom:10px;}
-.token-box{width:100%;min-height:160px;border:3px solid #00a8ff;border-radius:20px;padding:15px;font-size:13px;background:white;color:#333;text-align:left;word-break:break-all;line-height:1.5;margin-bottom:20px;}
+.label{text-align:left;color:#0077ff;font-weight:700;font-size:16px;margin-bottom:10px;margin-top:15px;}
+.token-box{width:100%;min-height:140px;border:3px solid #00a8ff;border-radius:20px;padding:15px;font-size:13px;background:white;color:#333;text-align:left;word-break:break-all;line-height:1.5;margin-bottom:12px;}
+
+/* BOX TOKEN GOJEK WARNA IJO */
+.token-gojek{border:3px solid #00aa13;}
 .btn{width:100%;padding:16px;border:none;border-radius:50px;font-size:18px;font-weight:bold;color:white;cursor:pointer;background: linear-gradient(90deg, #00a8ff, #0077ff);box-shadow: 0 5px 20px rgba(0,119,255,0.4);transition:.3s;margin-bottom:12px;text-decoration:none;display:block;}
 .btn:hover{transform:translateY(-3px);}
 
@@ -51,13 +54,16 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 .btn-wa{background: linear-gradient(90deg, #25D366, #128C7E);box-shadow: 0 5px 20px rgba(37,211,102,0.4);}
 .btn-tg{background: linear-gradient(90deg, #0088cc, #005f99);box-shadow: 0 5px 20px rgba(0,136,204,0.4);}
 
+/* Tombol Salin Gojek Warna Ijo */
+.btn-gojek{background: linear-gradient(90deg, #00aa13, #008a0f);box-shadow: 0 5px 20px rgba(0,170,19,0.4);}
+
 .music-box{background: linear-gradient(135deg, #6a11cb, #2575fc);border-radius:20px;padding:15px;margin-bottom:20px;color:white;}
 .music-title{font-weight:800;margin-bottom:10px;font-size:14px;}
 .music-controls{display:flex;gap:10px;}
 .music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;}
 .music-select{width:100%;padding:10px;border-radius:15px;border:none;margin-bottom:10px;font-weight:600;background:white;color:#333;}
 
-/* BOX LAYANAN BARU */
+/* BOX LAYAN BARU */
 .service-box{background: linear-gradient(135deg, #fff9e6, #fff3cd);border: 2px solid #ffc107;border-radius:20px;padding:20px;text-align:left;margin:20px 0;box-shadow: 0 5px 20px rgba(255,193,7,0.2);}
 .service-title{color:#dc3545;font-weight:900;font-size:18px;text-align:center;margin-bottom:15px;display:flex;align-items:center;justify-content:center;gap:8px;}
 .service-list{margin-bottom:15px;}
@@ -71,7 +77,6 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 .cta-text{text-align:center;color:#0077ff;font-weight:800;font-size:15px;margin:15px 0;line-height:1.6;}
 .thanks-text{text-align:center;color:#555;font-weight:700;font-size:13px;margin-top:10px;}
 
-.bypass-inside{background: linear-gradient(135deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;margin:15px 0;text-align:center;}
 .footer{color:#666;font-size:13px;margin-top:10px;font-weight:600;}
 .status{font-size:12px;color:#0077ff;margin-bottom:10px;font-weight:600;}
 
@@ -125,9 +130,15 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
     </div>
 </div>
 
+<!-- TOKEN GRAB -->
 <p class="label">Token Grab Aktif</p>
 <div id="token" class="token-box">Memuat token dari Firebase...</div>
-<button class="btn" onclick="copyToken()">📋 Salin Token</button>
+<button class="btn" onclick="copyToken('token')">📋 Salin Token Grab</button>
+
+<!-- TOKEN GOJEK BARU -->
+<p class="label">Token Gojek Aktif</p>
+<div id="token_gojek" class="token-box token-gojek">Memuat token dari Firebase...</div>
+<button class="btn btn-gojek" onclick="copyToken('token_gojek')">📋 Salin Token Gojek</button>
 
 <!-- TOMBOL KONTAK -->
 <a href="https://wa.me/6285161769441" target="_blank" class="btn btn-wa">💬 WhatsApp Admin</a>
@@ -279,6 +290,7 @@ function updateClock(){
 setInterval(updateClock, 1000);
 updateClock();
 
+// === FIREBASE TOKEN GRAB ===
 const tokenRef = db.ref('token');
 tokenRef.on('value', (snapshot) => {
   const data = snapshot.val();
@@ -287,6 +299,17 @@ tokenRef.on('value', (snapshot) => {
     document.getElementById('status').innerText = "✅ Token berhasil dimuat";
   } else {
     document.getElementById('token').innerText = "Token belum diisi di Firebase";
+  }
+});
+
+// === FIREBASE TOKEN GOJEK BARU ===
+const tokenGojekRef = db.ref('token_gojek');
+tokenGojekRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+  if (data) {
+    document.getElementById('token_gojek').innerText = data;
+  } else {
+    document.getElementById('token_gojek').innerText = "Token belum diisi di Firebase";
   }
 });
 
@@ -299,8 +322,9 @@ totalVisitorRef.on('value', (snap) => {
     document.getElementById('visitorCount').innerText = snap.val() || 0;
 });
 
-function copyToken(){
-    const tokenText = document.getElementById("token").innerText;
+// === FUNGSI SALIN TOKEN UDAH DIUBAH BISA 2 TOKEN ===
+function copyToken(id){
+    const tokenText = document.getElementById(id).innerText;
     navigator.clipboard.writeText(tokenText).then(() => {
         document.getElementById('status').innerText = "📋 Token berhasil disalin!";
         setTimeout(() => { document.getElementById('status').innerText = "✅ Token berhasil dimuat" }, 2000)
