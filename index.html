@@ -34,11 +34,13 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 @keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes spin {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes rain {0%{transform:translateY(-10px);opacity:0}50%{opacity:1}100%{transform:translateY(20px);opacity:0}}
+@keyframes bounce {0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .sun {animation: float 3s ease-in-out infinite;}
 .cloud {animation: float 4s ease-in-out infinite;}
 .rain {position:relative;}
 .rain::after{content:'💧';position:absolute;font-size:10px;top:20px;left:50%;transform:translateX(-50%);animation:rain 1s linear infinite;}
 .wind {animation: spin 2s linear infinite;}
+.emoji-bounce{display:inline-block;animation: bounce 1.5s ease-in-out infinite;}
 
 .label{text-align:left;color:#0077ff;font-weight:700;font-size:16px;margin-bottom:10px;}
 .token-box{width:100%;min-height:160px;border:3px solid #00a8ff;border-radius:20px;padding:15px;font-size:13px;background:white;color:#333;text-align:left;word-break:break-all;line-height:1.5;margin-bottom:20px;}
@@ -47,15 +49,28 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 
 /* Tombol WA + Telegram */
 .btn-wa{background: linear-gradient(90deg, #25D366, #128C7E);box-shadow: 0 5px 20px rgba(37,211,102,0.4);}
-.btn-tg{background: linear-gradient(90deg, #0088cc, #005f99);box-shadow: 0 5px 20px rgba(0,136,204,0.4);} /* Biru Telegram */
+.btn-tg{background: linear-gradient(90deg, #0088cc, #005f99);box-shadow: 0 5px 20px rgba(0,136,204,0.4);}
 
 .music-box{background: linear-gradient(135deg, #6a11cb, #2575fc);border-radius:20px;padding:15px;margin-bottom:20px;color:white;}
 .music-title{font-weight:800;margin-bottom:10px;font-size:14px;}
 .music-controls{display:flex;gap:10px;}
 .music-btn{flex:1;padding:10px;border:none;border-radius:15px;background:rgba(255,255,255,0.2);color:white;font-weight:bold;cursor:pointer;}
 .music-select{width:100%;padding:10px;border-radius:15px;border:none;margin-bottom:10px;font-weight:600;background:white;color:#333;}
-.warning-box{background: linear-gradient(135deg, #fff9e6, #fff3cd);border: 2px solid #ffc107;border-radius:20px;padding:18px;text-align:left;margin:20px 0;}
-.warning-title{color:#dc3545;font-weight:800;font-size:16px;text-align:center;margin-bottom:10px;}
+
+/* BOX LAYANAN BARU */
+.service-box{background: linear-gradient(135deg, #fff9e6, #fff3cd);border: 2px solid #ffc107;border-radius:20px;padding:20px;text-align:left;margin:20px 0;box-shadow: 0 5px 20px rgba(255,193,7,0.2);}
+.service-title{color:#dc3545;font-weight:900;font-size:18px;text-align:center;margin-bottom:15px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.service-list{margin-bottom:15px;}
+.service-item{color:#333;font-weight:600;font-size:14px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;}
+.service-item .emoji{font-size:18px;flex-shrink:0;}
+
+.why-box{background: linear-gradient(135deg, #e8f5e9, #c8e6c9);border: 2px solid #4caf50;border-radius:20px;padding:18px;margin:15px 0;}
+.why-title{color:#2e7d32;font-weight:900;font-size:16px;text-align:center;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.why-item{color:#333;font-weight:600;font-size:13px;margin-bottom:8px;display:flex;gap:8px;align-items:center;}
+
+.cta-text{text-align:center;color:#0077ff;font-weight:800;font-size:15px;margin:15px 0;line-height:1.6;}
+.thanks-text{text-align:center;color:#555;font-weight:700;font-size:13px;margin-top:10px;}
+
 .bypass-inside{background: linear-gradient(135deg, #00a8ff, #0077ff);color:white;padding:12px;border-radius:15px;margin:15px 0;text-align:center;}
 .footer{color:#666;font-size:13px;margin-top:10px;font-weight:600;}
 .status{font-size:12px;color:#0077ff;margin-bottom:10px;font-weight:600;}
@@ -119,18 +134,40 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 <a href="https://t.me/driversantuy" target="_blank" class="btn btn-tg">📱 Telegram Admin</a>
 <a href="https://t.me/mixrootstore" target="_blank" class="btn btn-tg">👥 Grup Publik Telegram</a>
 
-<!-- TEXT BERJALAN KONTAK BARU -->
+<!-- TEXT BERJALAN KONTAK -->
 <div class="contact-marquee">
     <span>Semoga hari harimu menyenangkan 😀✨ sukses sehat selalu ✨🤲</span>
 </div>
 
 <div class="status" id="status"></div>
 
-<div class="warning-box">
-    <div class="warning-title">⚠️ JASA BYPASS SUSPEN GRAB 7 HARI!</div>
-    <div class="bypass-inside">
-        <div>🚀 ROOT BYPASS VERMUK ALL APLIKASI OJOL</div>
-        <div>Tembus Semua!</div>
+<!-- BOX LAYAN BARU -->
+<div class="service-box">
+    <div class="service-title"><span class="emoji-bounce">⭐</span> Layanan kami:</div>
+    <div class="service-list">
+        <div class="service-item"><span class="emoji-bounce">💎</span> Obat Vermuk untuk joki (bukan modul bukan mod) all aplikasi ojol</div>
+        <div class="service-item"><span class="emoji-bounce">💎</span> Bypass Suspen 3/7 hari (memudahkan anda untuk mencari cuan tanpa harus menunggu lama)</div>
+        <div class="service-item"><span class="emoji-bounce">💎</span> Mod grab driver all fitur</div>
+        <div class="service-item"><span class="emoji-bounce">💎</span> Fake GPS</div>
+        <div class="service-item"><span class="emoji-bounce">💎</span> Flashing/Root (buildrom/customrom/smali/magisk) dengan modul efektif yang sudah teruji ratusan driver</div>
+    </div>
+
+    <div class="why-box">
+        <div class="why-title"><span class="emoji-bounce">⭐</span> KENAPA PILIH MIXROOT?</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Proses Cepat</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Aman & Terpercaya</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Support Jarak Jauh (Remote)</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Harga Bersahabat</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Fast Response</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Support Setelah Pengerjaan</div>
+        <div class="why-item"><span class="emoji-bounce">✅</span> Maintenance modul untuk member/root bypass vermuk</div>
+    </div>
+
+    <div class="cta-text">
+        Tunggu apalagi ? <br>Akun aman, kerja nyaman <span class="emoji-bounce">👌</span> Buruan gabung bersama kami <span class="emoji-bounce">🤝</span>
+    </div>
+    <div class="thanks-text">
+        💙 Terima kasih atas kepercayaan Anda.
     </div>
 </div>
 
