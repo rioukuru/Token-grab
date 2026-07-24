@@ -9,14 +9,24 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Arial, sans-serif;}
-body{min-height:100vh;display:flex;justify-content:center;align-items:center;background: linear-gradient(135deg, #00a8ff, #0077ff);padding:20px;flex-direction:column;}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    flex-direction:column;
+    /* BACKGROUND GANTI PAKE WALLPAPER.PNG */
+    background: linear-gradient(rgba(0,119,255,0.7), rgba(0,168,255,0.7)), url('wallpaper.png') no-repeat center fixed;
+    background-size: cover;
+}
 .clock-bubble{width:100%;max-width:420px;background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));backdrop-filter: blur(15px);border: 2px solid rgba(255,255,255,0.3);border-radius:25px;padding:15px;margin-bottom:15px;text-align:center;box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.4);}
 .clock{font-family: 'Orbitron', sans-serif;font-size:32px;font-weight:900;color:#fff;text-shadow: 0 0 10px #00a8ff, 0 0 20px #0077ff;letter-spacing:3px;}
 .clock-date{font-size:12px;color:rgba(255,255,255,0.9);margin-top:5px;font-weight:600;}
 .marquee{width:100%;max-width:420px;background: linear-gradient(90deg, #ff0000, #ff4d4d);color: white;font-weight:800;font-size:14px;padding:10px 0;border-radius:12px;margin-bottom:15px;overflow:hidden;white-space:nowrap;box-shadow: 0 4px 20px rgba(255,0,0,0.5);}
 .marquee span{display:inline-block;padding-left:100%;animation: marquee 10s linear infinite;}
 @keyframes marquee{0% { transform: translate(0, 0); }100% { transform: translate(-100%, 0); }}
-.container{width:100%;max-width:420px;background: linear-gradient(180deg, #ffffff, #e6f3ff);border-radius:30px;padding:30px 25px;text-align:center;box-shadow: 0 15px 50px rgba(0,119,255,0.3);border: 2px solid rgba(0,168,255,0.2);}
+.container{width:100%;max-width:420px;background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(230,243,255,0.95));border-radius:30px;padding:30px 25px;text-align:center;box-shadow: 0 15px 50px rgba(0,119,255,0.3);border: 2px solid rgba(0,168,255,0.2);backdrop-filter: blur(10px);}
 .logo{width:120px;height:120px;margin:0 auto 15px;border-radius:50%;object-fit:cover;box-shadow: 0 0 30px #00a8ff;border: 4px solid #00a8ff;}
 h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
 .subtitle{color:#555;font-size:16px;margin-bottom:15px;}
@@ -182,7 +192,7 @@ h1{color:#0077ff;font-size:32px;font-weight:800;margin-bottom:5px;}
         <div class="why-item"><span class="emoji-bounce">✅</span> Proses Cepat</div>
         <div class="why-item"><span class="emoji-bounce">✅</span> Aman & Terpercaya</div>
         <div class="why-item"><span class="emoji-bounce">✅</span> Support Jarak Jauh (Remote)</div>
-        <div class="why-item"><span class="emoji-bounce">✅</span> Harga Bersahabat</div>
+        < <div class="why-item"><span class="emoji-bounce">✅</span> Harga Bersahabat</div>
         <div class="why-item"><span class="emoji-bounce">✅</span> Fast Response</div>
         <div class="why-item"><span class="emoji-bounce">✅</span> Support Setelah Pengerjaan</div>
         <div class="why-item"><span class="emoji-bounce">✅</span> Maintenance modul untuk member/root bypass vermuk</div>
